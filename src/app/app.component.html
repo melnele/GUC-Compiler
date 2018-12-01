@@ -16,15 +16,15 @@
         </ul>
       </div>
 
-      <textarea id="stdout" class="input-lg" style="float:right;" [(ngModel)]="stdout"></textarea>
+      <textarea id="stdout" class="input-lg" style="float:right;" readonly disabled [(ngModel)]="stdout"></textarea>
 
     </div>
     <div>
-      <button type="button" class="btn btn-primary" (click)=convert()>Compile</button>
+      <button type="button" class="btn btn-primary" (click)=compile()>Compile</button>
     </div>
   </div>
   <form class="form-inline" style="margin-top: 2em">
     <input id="file" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".java,.py">
-    <input class="btn btn-primary" type="submit" style="margin-left: 15em" value="Compile File" (click)=convert2()>
+    <input class="btn btn-primary" type="submit" style="margin-left: 15em" value="Compile File" (click)=compilefile()>
   </form>
 </div>

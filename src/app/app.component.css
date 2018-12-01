@@ -1,0 +1,12 @@
+#file{
+    display: inline-block;
+    width: auto;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}

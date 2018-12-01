@@ -11,11 +11,43 @@ export class AppComponent {
   code = '';
   stdin = '';
   stdout = '';
+  lang = 'detect';
   static codefile = '';
 
   constructor(public http: HttpClient) { }
 
   static getfiletext(str) {
     this.codefile = str;
+  }
+
+  compilefile() {
+    this.code = AppComponent.codefile;
+    this.change(AppComponent.codefile);
+  }
+
+  compilecode() {
+    this.change(this.code);
+  }
+
+  change(text) {
+    var config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    this.http.post('/api/compile/', text, config).subscribe(res => {
+      this.stdout = res["data"];
+    }, err => {
+    });
+  }
+
+  fileChange(event) {
+    let file: File = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsText(file);
+
+    reader.onloadend = function (e) {
+      AppComponent.getfiletext(reader.result);
+    }
   }
 }

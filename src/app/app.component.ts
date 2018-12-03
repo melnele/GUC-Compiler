@@ -41,6 +41,20 @@ export class AppComponent {
     });
   }
 
+  select(value){
+    if (value === 'detect'){
+      var config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      this.http.post('/api/compile/', this.code, config).subscribe(res => {
+        this.stdout = res["data"];
+      }, err => {
+      });
+    }
+  }
+
   fileChange(event) {
     let file: File = event.target.files[0];
     var reader = new FileReader();

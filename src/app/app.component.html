@@ -6,15 +6,13 @@
     <div>
       <textarea id="stdin" class="input-lg" [(ngModel)]="stdin"></textarea>
 
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Detect</a></li>
-          <li><a href="#">Java</a></li>
-          <li><a href="#">Python</a></li>
-        </ul>
-      </div>
+      <mat-form-field>
+        <mat-select placeholder="Choose" [(value)]="lang" (selectionChange)="select($event.value)" >
+          <mat-option value="Detect">Detect</mat-option>
+          <mat-option value="Java">Java</mat-option>
+          <mat-option value="Python">Python</mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <textarea id="stdout" class="input-lg" style="float:right;" readonly disabled [(ngModel)]="stdout"></textarea>
 

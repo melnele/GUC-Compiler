@@ -6,6 +6,7 @@ module.exports.compile = function (req, res, next) {
         var program = {
             script: req.body.code,
             language: req.body.lang,
+            stdin: req.body.stdin,
             versionIndex: "2",
             clientId: "b623e706dc83f697559d7707ddb565c0",
             clientSecret: "1ac634d9b5c0ae7db8b008afe48a39221bfa4f3fee68c8b1ba482037317fe0ce"
@@ -23,7 +24,7 @@ module.exports.compile = function (req, res, next) {
                 res.status(response.statusCode).json({
                     err: error,
                     msg: response.msg,
-                    data: body
+                    data: body.output
                 });
             }
         );

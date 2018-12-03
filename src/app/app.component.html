@@ -10,7 +10,7 @@
         <mat-select placeholder="Choose" [(value)]="lang" (selectionChange)="select()" >
           <mat-option value="detect">Detect</mat-option>
           <mat-option value="java">Java</mat-option>
-          <mat-option value="python">Python</mat-option>
+          <mat-option value="go">Go</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -22,7 +22,7 @@
     </div>
   </div>
   <form class="form-inline" style="margin-top: 2em">
-    <input id="file" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".java,.py">
+    <input id="file" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".java,.go">
     <input class="btn btn-primary" type="submit" style="margin-left: 15em" value="Compile File" (click)=compilefile()>
   </form>
 </div>

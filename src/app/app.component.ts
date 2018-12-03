@@ -12,6 +12,7 @@ export class AppComponent {
   stdin = '';
   stdout = '';
   lang = '';
+  scode = '';
   static codefile = '';
 
   constructor(public http: HttpClient) { }
@@ -37,7 +38,8 @@ export class AppComponent {
       stdin: this.stdin
     });
     this.http.post('/api/compile/', data, config).subscribe(res => {
-      this.stdout = res["data"];
+      this.scode = res["data"].error;
+      this.stdout = res["data"].output;
     }, err => {
     });
   }

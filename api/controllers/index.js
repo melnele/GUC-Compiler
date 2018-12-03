@@ -21,10 +21,10 @@ module.exports.compile = function (req, res, next) {
                 console.log("error:", error);
                 console.log("statusCode:", response && response.statusCode);
                 console.log("body:", body);
-                res.status(response.statusCode).json({
+                res.status(200).json({
                     err: error,
                     msg: response.msg,
-                    data: body.output
+                    data: body
                 });
             }
         );

@@ -8,8 +8,8 @@ module.exports.compile = function (req, res, next) {
             language: req.body.lang,
             stdin: req.body.stdin,
             versionIndex: "2",
-            clientId: "b623e706dc83f697559d7707ddb565c0",
-            clientSecret: "1ac634d9b5c0ae7db8b008afe48a39221bfa4f3fee68c8b1ba482037317fe0ce"
+            clientId: process.env.jdoodleClientId,
+            clientSecret: process.env.jdoodleClientSecret
         };
         request(
             {
@@ -35,8 +35,7 @@ module.exports.compile = function (req, res, next) {
 
 module.exports.detect = function (req, res, next) {
     try {
-        // console.log(req.body.code);
-        Algorithmia.client("simTZ6h74qFs2ki2vqbiPRPpuay1")
+        Algorithmia.client(process.env.algorithmiaAPIKey)
             .algo("PetiteProgrammer/ProgrammingLanguageIdentification/0.1.3")
             .pipe(req.body.code)
             .then(function (response) {

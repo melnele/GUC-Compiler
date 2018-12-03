@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build: .
+    environment: 
+      jdoodleClientId: b623e706dc83f697559d7707ddb565c0
+      jdoodleClientSecret: 1ac634d9b5c0ae7db8b008afe48a39221bfa4f3fee68c8b1ba482037317fe0ce
+      algorithmiaAPIKey: simTZ6h74qFs2ki2vqbiPRPpuay1
+    ports:
+      - 8080:8080

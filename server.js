@@ -6,6 +6,11 @@ var express = require('express'),
     routes = require('./api/routes'),
     app = express();
 
+// Initialize the app.
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});
 
 app.use(logger(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(helmet());
@@ -20,12 +25,6 @@ app.use(
         extended: false
     })
 );
-
-// Initialize the app.
-var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-});
 
 app.use('/api', routes);
 
@@ -48,12 +47,3 @@ app.use(function (req, res) {
         data: null
     });
 });
-
-app.use(
-    bodyParser.urlencoded({
-        extended: false
-    })
-);
-
-
-module.exports = app;

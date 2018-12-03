@@ -22,20 +22,21 @@ export class AppComponent {
 
   compilefile() {
     this.code = AppComponent.codefile;
-    this.change(AppComponent.codefile);
+    this.compile();
   }
 
-  compilecode() {
-    this.change(this.code);
-  }
-
-  change(text) {
+  compile() {
     var config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
-    this.http.post('/api/compile/', text, config).subscribe(res => {
+    var data = JSON.stringify({
+      code: this.code,
+      lang: this.lang,
+      stdin: this.stdin
+    });
+    this.http.post('/api/compile/', data, config).subscribe(res => {
       this.stdout = res["data"];
     }, err => {
     });

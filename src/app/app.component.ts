@@ -11,7 +11,7 @@ export class AppComponent {
   code = '';
   stdin = '';
   stdout = '';
-  lang = 'detect';
+  lang = '';
   static codefile = '';
 
   constructor(public http: HttpClient) { }
@@ -41,15 +41,16 @@ export class AppComponent {
     });
   }
 
-  select(value){
-    if (value === 'detect'){
+  select() {
+    if (this.lang === 'detect') {
       var config = {
         headers: {
           'Content-Type': 'application/json'
         }
       };
-      this.http.post('/api/compile/', this.code, config).subscribe(res => {
-        this.stdout = res["data"];
+      var data = JSON.stringify({ code: this.code });
+      this.http.post('/api/detect/', data, config).subscribe(res => {
+        this.lang = res["data"];
       }, err => {
       });
     }
